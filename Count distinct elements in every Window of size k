@@ -1,0 +1,27 @@
+from collections import defaultdict
+class Solution:
+    def countDistinct(self, A, N, K):
+        
+        if K >= N:
+            return [len(set(A))]
+            
+        d = defaultdict(int)
+        i = j = 0
+        ans = []
+        
+        while j < n:
+            
+            d[A[j]] += 1 
+            
+            if j-i+1 < K:
+                j += 1
+            elif j-i+1 == K:
+                ans.append(len(d))
+                d[A[i]] -= 1
+                if d[A[i]] == 0:
+                    del d[A[i]]
+                i += 1
+                j += 1
+                
+        return ans
+            
