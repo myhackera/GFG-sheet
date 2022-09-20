@@ -1,0 +1,30 @@
+class Solution:
+    def rotateMatrix(self, M, N, Mat):
+        
+        row, col = 0, 0
+        
+        while row < M and col < N:
+            
+            if row+1 == M or col+1 == N: break
+        
+            prev = Mat[row+1][col]
+            
+            for i in range(col, N):
+                Mat[row][i], prev = prev, Mat[row][i]
+            row += 1
+            
+            for j in range(row, M):
+                Mat[j][N-1], prev = prev, Mat[j][N-1]
+            N -= 1
+            
+            if row < M:
+                for i in range(N-1, col-1, -1):
+                    Mat[M-1][i], prev = prev, Mat[M-1][i]
+                M -= 1
+                
+            if col < N:
+                for j in range(M-1, row-1, -1):
+                    Mat[j][col], prev = prev, Mat[j][col]
+                col += 1
+        
+        return Mat
