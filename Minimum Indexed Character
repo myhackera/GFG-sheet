@@ -1,0 +1,23 @@
+import sys
+class Solution:
+    
+    #Function to find the minimum indexed character.
+    def minIndexChar(self,Str, pat): 
+        
+        d = {}
+        for i in range(len(Str)):
+            if Str[i] not in d:
+                d[Str[i]] = i
+                
+        min_char = ""
+        min_index = sys.maxsize
+            
+        for ch in pat:
+            if ch in d and min_index > d[ch]:
+                min_char = ch
+                min_index = d[ch]
+                
+        return min_index if min_index != sys.maxsize else -1
+        
+       
+        
