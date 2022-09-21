@@ -1,0 +1,12 @@
+O(NlogN)
+=======>>>>
+
+class Solution:
+    def minxorpair (self, N, arr):
+        
+        minXor = 100001
+        
+        arr.sort()
+        for i in range(N-1):
+            minXor = min(minXor, arr[i]^arr[i+1])
+        return minXor
