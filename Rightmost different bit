@@ -1,0 +1,17 @@
+class Solution:
+    
+    #Function to find the first position with different bits.
+    def posOfRightMostDiffBit(self,m,n):
+        
+        bm = "{:032b}".format(m)
+        bn = "{:032b}".format(n)
+        i = 31
+        cnt = 1
+        while i > 0:
+            if bm[i] != bn[i]:
+                return cnt 
+            i -= 1
+            cnt += 1
+        return -1
+            
+            
