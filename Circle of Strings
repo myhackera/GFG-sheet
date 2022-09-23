@@ -1,0 +1,33 @@
+from collections import defaultdict
+class Solution:
+    def isCircle(self, N, A):
+        
+        A = list(A)
+        def dfs(g, vis, u):
+            
+            vis[u] = 1
+            for nei in g[u]:
+                if not vis[nei]:
+                    dfs(g, vis, nei)
+            
+            
+        vis = defaultdict(int)
+        g = defaultdict(list)
+      
+        for i in range(N):
+            
+            g[A[i][0]].append(A[i][-1])
+            g[A[i][-1]].append(A[i][0])
+        
+        count = 0
+       
+        for k,v in g.items():
+            if not vis[k]:
+                dfs(g, vis, k)
+                count += 1
+                
+        if count > 1: return 0
+        for k,v in g.items():
+            if len(v)&1:
+                return 0
+        return 1
