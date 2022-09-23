@@ -1,0 +1,21 @@
+from collections import defaultdict
+class Solution:
+
+    def longestSubstrDistinctChars(self, S):
+        
+        n = len(S)
+        d = defaultdict(int)
+        i = j = maxlen = 0
+        
+        while j < n:
+            d[S[j]] += 1
+            if j-i+1 > len(d):
+                d[S[i]] -= 1
+                if d[S[i]] == 0:
+                    del d[S[i]]
+                i += 1
+            else:
+                maxlen = max(maxlen, j-i+1)
+            j += 1
+                
+        return maxlen
