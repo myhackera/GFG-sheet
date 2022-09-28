@@ -1,0 +1,35 @@
+from collections import defaultdict
+
+class Solution:
+    def smallestWindow(self, s, p):
+        
+        d = defaultdict(int)
+        for i in p:
+            d[i] += 1
+        
+        i = j = 0
+        start = i
+        cnt = len(d)
+        ans = len(s)
+        
+        while j < len(s):
+            
+            d[s[j]] -= 1
+            if d[s[j]] == 0:
+                cnt -= 1
+    
+                while cnt == 0:
+                    if ans > j-i+1:
+                        ans = j-i+1
+                        start = i
+                        
+                    d[s[i]] += 1
+                    if d[s[i]] > 0:
+                        cnt += 1
+                        
+                    i += 1
+            j += 1
+            
+        if ans >= len(s):
+            return -1
+        return s[start: start+ans]
