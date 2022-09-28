@@ -1,0 +1,32 @@
+class Solution:
+    def median(self, matrix, r, c):
+    	
+    	def findnumbersmallerthanele(arr, ele):
+    	    
+    	    l, h = 0, len(arr)-1
+    	    
+    	    while l <= h:
+    	        m = (l+h)>>1
+    	        if arr[m] > ele:
+    	            h = m-1
+    	        else:
+    	            l = m+1
+    	            
+    	    return l
+    	
+    	
+    	low = 0
+    	high = 1e8
+    	
+    	while low <= high:
+    	    
+    	    mid = low + (high-low)//2
+    	    cnt = 0
+    	    for i in range(r):
+    	        cnt += findnumbersmallerthanele(matrix[i], mid)
+	        if cnt <= (r*c)//2:
+	            low = mid+1
+	        else:
+	            high = mid-1
+    	           
+    	return int(low)
