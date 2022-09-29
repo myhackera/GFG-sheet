@@ -1,0 +1,49 @@
+class Solution:
+    def nQueen(self, n):
+        
+        def find_result(mat):
+            
+            n = len(mat)
+            ans = []
+            
+            for i in range(n):
+                for j in range(n):
+                    if mat[i][j] == 1:
+                        ans.append(j+1)
+                        
+            return ans
+        
+        
+        cols = set()
+        diag = set()
+        anti_diag = set()
+        result = []
+        output = [[0 for _ in range(n)] for _ in range(n)]
+        
+        def place_queen(row):
+            
+            nonlocal cols, diag, anti_diag, result, output
+            
+            if row == n:
+                result.append(find_result(output))
+                return 
+            
+            for col in range(n):
+                
+                if col in cols or row+col in diag or row-col in anti_diag: continue
+            
+                cols.add(col)
+                diag.add(row+col)
+                anti_diag.add(row-col)
+                output[row][col] = 1
+                
+                place_queen(row+1)
+                
+                cols.remove(col)
+                diag.remove(row+col)
+                anti_diag.remove(row-col)
+                output[row][col] = 0
+            
+            
+        place_queen(0)
+        return result
