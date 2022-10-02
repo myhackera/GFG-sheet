@@ -1,0 +1,38 @@
+class Solution:
+    def wordBoggle(self,board,dictionary):
+        
+        def dfs(board, word, vis, i, j, index, dx, dy):
+            
+            if index == len(word): return True
+            vis[i][j] = 1
+            for k in range(8):
+                nr = i+dx[k]
+                nc = j+dy[k]
+                n = len(board)
+                m = len(board[0])
+                if nr>=0 and nr<n and nc>=0 and nc<m and vis[nr][nc] == 0 and board[nr][nc] == word[index]: 
+                    if dfs(board, word, vis, nr, nc, index+1, dx, dy):
+                        return True
+            vis[i][j] = 0
+            return False
+        
+        def ispresent(board, word):
+            n = len(board)
+            m = len(board[0])
+            index = 0
+            dx = [-1, -1, 0, 1, 1, 1, 0, -1]
+            dy = [0, 1, 1, 1, 0, -1, -1, -1]
+            vis = [[0]*m for _ in range(n)]
+            for i in range(n):
+                for j in range(m):
+                    if board[i][j] == word[index]:
+                        if dfs(board, word, vis, i, j, index+1, dx, dy):
+                            return True
+            return False
+        
+        ans = []
+        for i in range(len(dictionary)):
+            word = dictionary[i]
+            if ispresent(board, word):
+                ans.append(word)
+        return ans
