@@ -1,0 +1,10 @@
+class Solution:
+    def swapBits(self,n):
+        
+        bn = "{:032b}".format(n)
+        bn = list(bn)
+        for i in range(0, 32, 2):
+            bn[i], bn[i+1] = bn[i+1], bn[i]
+        ans = ''.join(bn)
+        return int(ans, 2)
+        
