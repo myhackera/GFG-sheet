@@ -1,0 +1,22 @@
+class Solution:
+    def pageFaults(self, N, C, pages):
+        
+        q = []
+        count = 0
+        
+        for i in range(N):
+            
+            if pages[i] in q:
+                index = q.index(pages[i])
+                temp = q.pop(index)
+                q.append(temp)
+            else:
+                count += 1
+                if len(q) < C:
+                    q.append(pages[i])
+                else:
+                    q.pop(0)
+                    q.append(pages[i])
+                
+        return count
+        
