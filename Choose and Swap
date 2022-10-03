@@ -1,0 +1,71 @@
+ public:
+    string chooseandswap(string s){
+      int n = s.size();
+       bool flag = false;
+       set<char> v;
+       for(int i =0; i<n;i++)
+       {
+           v.insert(s[i]);
+       }
+       char ch1,ch2;
+       for(int i =0; i<n;i++)
+       {
+           v.erase(s[i]);
+           for(auto j : v)
+           {
+               if(j<s[i])
+               {
+                   ch1 = j;
+                   ch2 = s[i];
+                   flag = true;
+                   break;
+               }
+               
+           }
+           if(flag) break;
+       }
+      
+       for(int i =0; i<n;i++)
+       {
+           if(s[i] == ch1) s[i] = ch2;
+           else if(s[i] == ch2) s[i] = ch1;
+       }
+       
+   return s;
+   }
+
+
+int n = s.size();
+       bool flag = false;
+       set<char> v;
+       for(int i =0; i<n;i++)
+       {
+           v.insert(s[i]);
+       }
+       char ch1,ch2;
+       for(int i =0; i<n;i++)
+       {
+           v.erase(s[i]);
+           for(auto j : v)
+           {
+               if(j<s[i])
+               {
+                   ch1 = j;
+                   ch2 = s[i];
+                   flag = true;
+                   break;
+               }
+               
+           }
+           if(flag) break;
+       }
+      
+       for(int i =0; i<n;i++)
+       {
+           if(s[i] == ch1) s[i] = ch2;
+           else if(s[i] == ch2) s[i] = ch1;
+       }
+       
+   return s;
+   }
+
