@@ -1,0 +1,57 @@
+void stockBuySell(int prices[], int n) {
+    int i = 0;
+
+    int buy = 1;
+
+    int s, e;
+
+    bool transecation = false;
+
+    for(int i = 0; i < n-1; i++){
+
+        if(buy){
+
+            if(prices[i] < prices[i+1]){
+
+                buy = 0;
+
+                s = i; 
+
+            }
+
+        }
+
+        else{
+
+            if(prices[i] > prices[i+1]){
+
+                buy = 1;
+
+                e = i;
+
+                cout<<"("<<s<<" "<<e<<")"<<" ";
+
+                transecation = true;
+
+            }
+
+        }
+
+    }
+
+    if(buy == 0){
+
+        cout<<"("<<s<<" "<<n-1<<")"<<" ";
+
+        transecation = true;
+
+    }
+
+    if(transecation == false){
+
+        cout<<"No Profit";
+
+    }
+
+    cout<<endl;
+}
